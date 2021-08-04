@@ -1,10 +1,20 @@
 import React from 'react';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
 function Header() {
   return (
-    <header>
-      <h1>Virtual Store</h1>
-    </header>
+    <AppBar color="inherit" position="static">
+      <Toolbar elevation={3}>
+      <IconButton>
+      <MenuIcon />
+      </IconButton>
+        <Typography variant="h6" >
+          The Nostalgia Store
+        </Typography>
+      </Toolbar>
+    </AppBar>
+
   );
 }
 
