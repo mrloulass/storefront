@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/App.js';
+import App from './App/App.js';
+import { Container } from '@material-ui/core';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Container>
+      <App />
+    </Container>
   </React.StrictMode>,
   document.getElementById('root')
 );
