@@ -7,12 +7,12 @@ import { Breadcrumbs, Link, Typography } from '@material-ui/core';
 function CategoryList() {
 
   //====== add hooks to function
-  const categories = useSelector(state => state.store.categories);
+  const categories = useSelector(state => state.categories.list);
   const dispatch = useDispatch();
 
   const setCategory = (category) => {
     dispatch({
-      type: 'ACTIVATE',
+      type: 'ACTIVATE_CATEGORY',
       payload: category,
     });
   }
