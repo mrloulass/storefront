@@ -3,7 +3,7 @@ import {Typography} from '@material-ui/core';
 
 function ActiveCategory() {
 
-  let activeCategory = useSelector(state => state.store.activeCategory);
+  let activeCategory = useSelector(state => state.categories.activeCategory);
 
   return (
     <Typography variant="h4" >{activeCategory}</Typography>

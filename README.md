@@ -13,12 +13,39 @@ Virtual Store: creating an e-Commerce storefront using React with Redux
 ### Phase 1: 
 - [React](https://reactjs.org/) Application
   - setup the basic scaffolding of the application with basic behaviors.
+  - Components
+    - App - container for all sub-components of this application
+    - Header - shows the name of your virtual store
+    - Footer - shows your copyright and contact information
+    - Categories:
+      - list of all categories
+      - Dispatches an action when one is clicked to “activate” it
+    - Products - a list of products associated with the selected category
+
 - [Redux](https://redux.js.org/)
   - State Management
+    - Categories - State contain a list of categories as well as the active category
+    - Products - State contain a list of all products
+    - Active Category - State store active category
+
 - [Material UI](https://material-ui.com/) 
   - For styling Components
 
-### Phase 2:  
+### Phase 2: Adding the "Add to Cart" feature to application
+- [React](https://reactjs.org/) Application
+  - Add a "Cart" indicator to the header, (Cart (0))
+  - Components
+    - Cart - show the items in the user’s cart
+    - SimpleCart:
+      - short list (title only) of products in the cart
+      - present at all times
+      
+- [Redux](https://redux.js.org/)
+  - State Management
+    - Cart:
+      - State contain an array of products that have been added (all product details)
+      - an action that will trigger the reducer to add the selected item to the cart
+      - a reducer that adds the product to the array of items in state
 
 ### Phase 3: 
 

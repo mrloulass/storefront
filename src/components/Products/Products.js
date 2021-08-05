@@ -1,22 +1,29 @@
 //====== import hooks from react-redux for the components to read state ======//
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { Grid, Card, CardMedia, CardContent, Typography,Button } from '@material-ui/core';
+import { addToCart } from '../../reduxStore/cartState.js'
 
 
 function ProductsList() {
 
   //====== add hooks to function
-  const products = useSelector(state => state.store.products);
+  const products = useSelector(state => state.products.list);
   const dispatch = useDispatch();
 
   const setProduct = (product) => {
     dispatch({
-      type: 'ACTIVATE',
+      type: 'ACTIVATE_CATEGORY',
       payload: product,
     });
   }
+
+  const itemClick = (item) => {
+    dispatch(addToCart(item));
+  }
+
   return (
+    
     <Grid
       container
       direction="row"
@@ -27,8 +34,8 @@ function ProductsList() {
         return (
           <Card elevation={3}>
             <CardMedia image={items.image}
-            height="140"
-            component="img"
+              height="100"
+              component="img"
             />
             <CardContent onClick={() => setProduct(items.category)}>
               <Typography component="h2"> {items.name} </Typography>
@@ -36,7 +43,9 @@ function ProductsList() {
               <Typography component="h2"> Price: {items.price} </Typography>
               <Typography component="h2"> Inventory: {items.inventoryCount} </Typography>
             </CardContent>
+            <Button onClick={()=> itemClick(items)}>Add to Cart</Button>
           </Card>
+          
         )
       })}
     </Grid>
