@@ -1,15 +1,21 @@
 //====== import hooks from react-redux for the components to read state ======//
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Grid, Card, CardMedia, CardContent, Typography,Button } from '@material-ui/core';
+import { Grid, Card, CardMedia, CardContent, Typography, Button } from '@material-ui/core';
 import { addToCart } from '../../reduxStore/cartState.js'
 
+import { useEffect } from 'react'
+import { getProducts } from '../../reduxStore/liveAPIState.js';
 
 function ProductsList() {
 
   //====== add hooks to function
   const products = useSelector(state => state.products.list);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
   const setProduct = (product) => {
     dispatch({
@@ -23,7 +29,7 @@ function ProductsList() {
   }
 
   return (
-    
+
     <Grid
       container
       direction="row"
@@ -43,9 +49,9 @@ function ProductsList() {
               <Typography component="h2"> Price: {items.price} </Typography>
               <Typography component="h2"> Inventory: {items.inventoryCount} </Typography>
             </CardContent>
-            <Button onClick={()=> itemClick(items)}>Add to Cart</Button>
+            <Button onClick={() => itemClick(items)}>Add to Cart</Button>
           </Card>
-          
+
         )
       })}
     </Grid>
