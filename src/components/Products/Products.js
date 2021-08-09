@@ -38,7 +38,7 @@ function ProductsList() {
     >
       {products.map(items => {
         return (
-          <Card elevation={3}>
+          <Card key={items.name} elevation={3}>
             <CardMedia image={items.image}
               height="100"
               component="img"
@@ -49,7 +49,7 @@ function ProductsList() {
               <Typography component="h2"> Price: {items.price} </Typography>
               <Typography component="h2"> Inventory: {items.inventoryCount} </Typography>
             </CardContent>
-            <Button onClick={() => itemClick(items)}>Add to Cart</Button>
+            <Button onClick={() => itemClick(items.name)}>Add to Cart</Button>
           </Card>
 
         )

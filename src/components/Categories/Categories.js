@@ -7,7 +7,7 @@ import { Breadcrumbs, Link, Typography } from '@material-ui/core';
 function CategoryList() {
 
   //====== add hooks to function
-  const categories = useSelector(state => state.categories.list);
+  const categories = useSelector(state => state.categories.categorylist);
   const dispatch = useDispatch();
 
   const setCategory = (category) => {
@@ -17,11 +17,11 @@ function CategoryList() {
     });
   }
   return (
-    <Breadcrumbs elevation={3}>
+    <Breadcrumbs  elevation={3}>
       {/* ==== display each category with map()=== */}
       {categories.map(category => {
         return (
-          <Link onClick={() => setCategory(category.normalizedName)}>
+          <Link key={category.displayName} onClick={() => setCategory(category.normalizedName)}>
             <Typography component="h2"> {category.displayName} </Typography>
             
           </Link>

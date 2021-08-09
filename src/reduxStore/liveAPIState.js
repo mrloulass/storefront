@@ -1,29 +1,41 @@
 import axios from 'axios';
 
+import { createSlice } from '@reduxjs/toolkit';
 const api = 'https://api-js401.herokuapp.com/api/v1/products'
 
-const initialState = { results: [] };
-
-function liveAPIReducer (state = initialState, action){
-  const { type, payload } = action;
-  switch (type) {
-    case 'GET_PRODUCTS':
-      return payload;
-    default:
-      return state;
+const liveAPISlice = createSlice({
+  name: 'API',
+  initialState: [{ results: [] }],
+  reducers: {
+    getProducts(state, action) {
+      state.push({ results: action.payload })
+    }
   }
-};
+})
+
+export const { getProducts } = liveAPISlice.actions
+// const initialState = { results: [] };
+
+// function liveAPIReducer (state = initialState, action){
+//   const { type, payload } = action;
+//   switch (type) {
+//     case 'GET_PRODUCTS':
+//       return payload;
+//     default:
+//       return state;
+//   }
+// };
 
 //===== async actions is a curried function, that will take in dispatch, and getState ====//
-export const getProducts = () => async (dispatch, getState) => {
+export const getItem = () => async (dispatch, getState) => {
   let response = await axios.get(api);
   let fetchedProducts = response.data.results;
 
-  dispatch(setProducts(fetchedProducts));
+  dispatch(getProducts(fetchedProducts));
 
 }
 
-export const postProducts = () => async (dispatch, getState) => {
+export const postItem = () => async (dispatch, getState) => {
   let response = await axios.post(api, {
     name: '',
     category: '',
@@ -32,24 +44,24 @@ export const postProducts = () => async (dispatch, getState) => {
   });
   let newProducts = response.data.results;
 
-  dispatch(setProducts(newProducts));
+  dispatch(getProducts(newProducts));
 
 }
-export const putProducts = (id, data) => async (dispatch, getState) => {
+export const putItem = (id, data) => async (dispatch, getState) => {
   let url = `${api}/${id}`
   let response = await axios.put(url).send(data);
   let fetchedIdProducts = response.data.results.id;
 
-  dispatch(setProducts(fetchedIdProducts));
+  dispatch(getProducts(fetchedIdProducts));
 
 }
 
-export const deleteProducts = (id, data) => async (dispatch, getState) => {
+export const deleteItem = (id, data) => async (dispatch, getState) => {
   let url = `${api}/${id}`
   let response = await axios.delete(url).send(data);
   let deleteIdProducts = response.data.results.id;
 
-  dispatch(setProducts(deleteIdProducts));
+  dispatch(getProducts(deleteIdProducts));
 
 }
 
@@ -57,11 +69,11 @@ export const deleteProducts = (id, data) => async (dispatch, getState) => {
 
 //======= a regular Redux action creator ======//
 
-export function setProducts(products) {
-  return {
-    type: 'GET_PRODUCTS',
-    payload: products,
-  }
-}
+// export function setProducts(products) {
+//   return {
+//     type: 'GET_PRODUCTS',
+//     payload: products,
+//   }
+// }
 
-export default liveAPIReducer;
+export default liveAPISlice.reducer;
