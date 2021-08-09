@@ -47,10 +47,13 @@ Virtual Store: creating an e-Commerce storefront using React with Redux
       - an action that will trigger the reducer to add the selected item to the cart
       - a reducer that adds the product to the array of items in state
 
-### Phase 3:  Connecting our Virtual Store to a live API
+### Phase 3: Connecting our Virtual Store to a live API
 - Persist changes to products based on cart activity.
 
-### Phase 4: 
+### Phase 4: Adding a two full page views to the application: Product Details and Checkout
+- Add routing to the application
+  - Product Details 
+  - Checkout
 
 ## Tests
 

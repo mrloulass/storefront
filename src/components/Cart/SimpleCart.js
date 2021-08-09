@@ -4,6 +4,8 @@ import { Card, Grid, Button, ButtonGroup } from '@material-ui/core'
 
 import {removeFromCart} from '../../reduxStore/cartState.js'
 
+
+
 function SimpleCart() {
 
   const cartItems = useSelector(state => state.cart);
@@ -20,7 +22,7 @@ function SimpleCart() {
       justifyContent="center"
       alignItems="flex-end"
     >
-      <Card elevation={3}>
+      <Card  elevation={3}>
         <p>Items added to Cart:</p>
         <ButtonGroup
         orientation="vertical"
@@ -29,7 +31,7 @@ function SimpleCart() {
          >
           {cartItems.map(item => {
             return (
-            <Button onClick={()=> clickToRemove(item)}>{item.name}</Button>
+            <Button  key={item.name} onClick={()=> clickToRemove(item.name)}>{item.name}</Button>
             )
           })}
         </ButtonGroup>
